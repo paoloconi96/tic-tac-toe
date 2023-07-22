@@ -1,10 +1,12 @@
-package com.conizzoli.tictactoe.engine;
+package com.conizzoli.tictactoe.engine.model;
+
+import com.conizzoli.tictactoe.engine.exception.InvalidBoardLocationException;
 
 public class BoardLocation {
-    private final byte x;
-    private final byte y;
+    private final int x;
+    private final int y;
 
-    private BoardLocation(byte x, byte y) {
+    public BoardLocation(int x, int y) {
         this.x = x;
         this.y = y;
     }
@@ -21,14 +23,14 @@ public class BoardLocation {
             throw new InvalidBoardLocationException();
         }
 
-        return new BoardLocation((byte) (baseNineLocationInt % 3), (byte) (baseNineLocationInt / 3));
+        return new BoardLocation(baseNineLocationInt % 3, baseNineLocationInt / 3);
     }
 
-    public byte getX() {
+    public int getX() {
         return x;
     }
 
-    public byte getY() {
+    public int getY() {
         return y;
     }
 }

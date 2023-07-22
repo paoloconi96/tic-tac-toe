@@ -1,4 +1,4 @@
-package com.conizzoli.tictactoe.engine;
+package com.conizzoli.tictactoe.engine.model;
 
 public enum Player {
     CROSS('X'), CIRCLE('O');

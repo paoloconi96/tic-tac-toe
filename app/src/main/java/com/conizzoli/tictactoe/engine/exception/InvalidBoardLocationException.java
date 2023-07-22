@@ -1,4 +1,4 @@
-package com.conizzoli.tictactoe.engine;
+package com.conizzoli.tictactoe.engine.exception;
 
 public class InvalidBoardLocationException extends Exception {
     public InvalidBoardLocationException() {

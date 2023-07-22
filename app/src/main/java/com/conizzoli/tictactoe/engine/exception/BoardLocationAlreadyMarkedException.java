@@ -1,4 +1,6 @@
-package com.conizzoli.tictactoe.engine;
+package com.conizzoli.tictactoe.engine.exception;
+
+import com.conizzoli.tictactoe.engine.model.Player;
 
 public class BoardLocationAlreadyMarkedException extends Exception {
     private final Player player;
