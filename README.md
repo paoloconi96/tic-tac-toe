@@ -4,7 +4,7 @@ Also, this is a PET project to better learn Java, Gradle, Spring Boot and the en
 So consider this is the final objective for this project.
 
 These are the features I would like to build next:
-- Game menu
+- ~~Game menu~~
 - Players name assignment
 - Improve computeWinner algorithm (also handling draw game)
 - Single player match
