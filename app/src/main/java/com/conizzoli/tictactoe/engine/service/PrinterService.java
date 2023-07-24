@@ -9,16 +9,18 @@ import java.util.ResourceBundle;
 
 public class PrinterService {
     private final ResourceBundle resourceBundle;
+    private final PlayerService playerService;
 
     @Inject
-    public PrinterService(ResourceBundle resourceBundle) {
+    public PrinterService(ResourceBundle resourceBundle, PlayerService playerService) {
         this.resourceBundle = resourceBundle;
+        this.playerService = playerService;
     }
 
     public void printWinner(Game game) {
         System.out.println(MessageFormat.format(
-                resourceBundle.getString("game.winnerMessage"),
-                game.getWinner().toSymbol()
+            resourceBundle.getString("game.winnerMessage"),
+            this.playerService.getPlayerName(game.getWinner())
         ));
     }
 

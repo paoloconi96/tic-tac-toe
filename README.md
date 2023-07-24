@@ -5,7 +5,7 @@ So consider this is the final objective for this project.
 
 These are the features I would like to build next:
 - ~~Game menu~~
-- Players name assignment
+- ~~Players name assignment~~
 - Improve computeWinner algorithm (also handling draw game)
 - Single player match
 - Improved validation

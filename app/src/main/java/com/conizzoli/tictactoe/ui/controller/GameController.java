@@ -1,27 +1,29 @@
 package com.conizzoli.tictactoe.ui.controller;
 
-import com.conizzoli.tictactoe.engine.exception.GameBoardLocationCouldNotBeMarkedBecausePlayerIsNotNextMover;
-import com.conizzoli.tictactoe.engine.model.BoardLocation;
 import com.conizzoli.tictactoe.engine.exception.BoardLocationAlreadyMarkedException;
-import com.conizzoli.tictactoe.engine.model.Game;
+import com.conizzoli.tictactoe.engine.exception.GameBoardLocationCouldNotBeMarkedBecausePlayerIsNotNextMover;
 import com.conizzoli.tictactoe.engine.exception.InvalidBoardLocationException;
+import com.conizzoli.tictactoe.engine.model.BoardLocation;
+import com.conizzoli.tictactoe.engine.model.Game;
+import com.conizzoli.tictactoe.engine.service.PlayerService;
 import com.conizzoli.tictactoe.engine.service.PrinterService;
 import com.google.inject.Inject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.text.MessageFormat;
 import java.util.ResourceBundle;
 
 public class GameController {
     private final PrinterService printerService;
+    private final PlayerService playerService;
     private final BufferedReader bufferedReader;
     private final ResourceBundle resourceBundle;
 
     @Inject
-    public GameController(PrinterService printerService, BufferedReader bufferedReader, ResourceBundle resourceBundle) {
+    public GameController(PrinterService printerService, PlayerService playerService, BufferedReader bufferedReader, ResourceBundle resourceBundle) {
         this.printerService = printerService;
+        this.playerService = playerService;
         this.bufferedReader = bufferedReader;
         this.resourceBundle = resourceBundle;
     }
@@ -42,10 +44,9 @@ public class GameController {
         this.printerService.printBoard(game);
 
         System.out.print(MessageFormat.format(
-                resourceBundle.getString("game.requireMoveMessage"),
-                player.toSymbol()
+            resourceBundle.getString("game.requireMoveMessage"),
+            playerService.getPlayerName(player)
         ));
-
         String move = this.bufferedReader.readLine();
         System.out.println();
 
