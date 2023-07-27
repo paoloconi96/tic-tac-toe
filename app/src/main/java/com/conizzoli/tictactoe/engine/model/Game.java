@@ -22,8 +22,12 @@ public class Game {
         this.board.computeWinner()
             .ifPresent(winner -> {
                 this.winner = winner;
-                this.status = GameStatus.FINISHED;
+                this.status = GameStatus.WON;
             });
+
+        if (this.board.computeIsDraw()) {
+            this.status = GameStatus.DRAW;
+        }
 
         this.nextMovePlayer = this.nextMovePlayer == Player.CROSS ? Player.CIRCLE : Player.CROSS;
     }
@@ -39,6 +43,10 @@ public class Game {
 
     public boolean isInProgress() {
         return this.status == GameStatus.IN_PROGRESS;
+    }
+
+    public GameStatus getStatus() {
+        return status;
     }
 
     public Player getNextMovePlayer() {

@@ -1,6 +1,7 @@
 package com.conizzoli.tictactoe.engine.model;
 
-enum GameStatus {
+public enum GameStatus {
     IN_PROGRESS,
-    FINISHED
+    WON,
+    DRAW,
 }

@@ -17,7 +17,15 @@ public class PrinterService {
         this.playerService = playerService;
     }
 
-    public void printWinner(Game game) {
+    public void printGameOutcome(Game game) {
+        switch (game.getStatus()) {
+            case WON -> this.printGameWinner(game);
+            case DRAW -> System.out.println(resourceBundle.getString("game.drawMessage"));
+            case IN_PROGRESS -> {}
+        }
+    }
+
+    public void printGameWinner(Game game) {
         System.out.println(MessageFormat.format(
             resourceBundle.getString("game.winnerMessage"),
             this.playerService.getPlayerName(game.getWinner())

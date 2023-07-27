@@ -35,7 +35,7 @@ public class GameController {
             this.requireMove(game);
         }
 
-        this.printerService.printWinner(game);
+        this.printerService.printGameOutcome(game);
     }
 
     private void requireMove(Game game) throws IOException, GameBoardLocationCouldNotBeMarkedBecausePlayerIsNotNextMover {
