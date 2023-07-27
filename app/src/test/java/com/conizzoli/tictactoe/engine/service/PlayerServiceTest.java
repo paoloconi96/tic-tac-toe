@@ -1,4 +1,4 @@
-package com.conizzoli.tictactoe.engine;
+package com.conizzoli.tictactoe.engine.service;
 
 import com.conizzoli.tictactoe.engine.model.Player;
 import com.conizzoli.tictactoe.engine.service.PlayerService;

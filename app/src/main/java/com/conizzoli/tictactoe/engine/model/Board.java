@@ -69,4 +69,16 @@ class Board {
 
         return Optional.empty();
     }
+
+    boolean computeIsDraw() {
+        for (Player[] row : this.state) {
+            for (Player cell : row) {
+                if (cell == null) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
 }

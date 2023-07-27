@@ -6,7 +6,7 @@ So consider this is the final objective for this project.
 These are the features I would like to build next:
 - ~~Game menu~~
 - ~~Players name assignment~~
-- Improve computeWinner algorithm (also handling draw game)
+- ~~Handle draw game~~
 - Single player match
 - Improved validation
 - Refactor using SpringBoot
@@ -15,5 +15,6 @@ These are the features I would like to build next:
 - UI layer functional tests
 - Single player match: different levels
 - Translations improvements and support for other languages
+- Refactor computeWinner method to handle boards with dynamic sizes
 - Larger board (4x4, 5x5, etc)
 - Web API
