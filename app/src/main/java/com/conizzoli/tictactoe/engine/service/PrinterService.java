@@ -2,14 +2,24 @@ package com.conizzoli.tictactoe.engine.service;
 
 import com.conizzoli.tictactoe.engine.model.BoardLocation;
 import com.conizzoli.tictactoe.engine.model.Game;
+import com.google.inject.Inject;
 
+import java.text.MessageFormat;
 import java.util.ResourceBundle;
 
 public class PrinterService {
-    private final ResourceBundle resourceBundle = ResourceBundle.getBundle("TicTacToeBundle");
+    private final ResourceBundle resourceBundle;
+
+    @Inject
+    public PrinterService(ResourceBundle resourceBundle) {
+        this.resourceBundle = resourceBundle;
+    }
 
     public void printWinner(Game game) {
-        System.out.println(resourceBundle.getString("game.winnerMessage") + " " + game.getWinner().toSymbol() + "!!!");
+        System.out.println(MessageFormat.format(
+                resourceBundle.getString("game.winnerMessage"),
+                game.getWinner().toSymbol()
+        ));
     }
 
     public void printBoard(Game game) {

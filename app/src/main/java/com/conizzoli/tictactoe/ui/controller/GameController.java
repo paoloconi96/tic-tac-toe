@@ -6,6 +6,7 @@ import com.conizzoli.tictactoe.engine.exception.BoardLocationAlreadyMarkedExcept
 import com.conizzoli.tictactoe.engine.model.Game;
 import com.conizzoli.tictactoe.engine.exception.InvalidBoardLocationException;
 import com.conizzoli.tictactoe.engine.service.PrinterService;
+import com.google.inject.Inject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,9 +15,16 @@ import java.text.MessageFormat;
 import java.util.ResourceBundle;
 
 public class GameController {
-    private final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-    private final PrinterService printerService = new PrinterService();
-    private final ResourceBundle resourceBundle = ResourceBundle.getBundle("TicTacToeBundle");
+    private final PrinterService printerService;
+    private final BufferedReader bufferedReader;
+    private final ResourceBundle resourceBundle;
+
+    @Inject
+    public GameController(PrinterService printerService, BufferedReader bufferedReader, ResourceBundle resourceBundle) {
+        this.printerService = printerService;
+        this.bufferedReader = bufferedReader;
+        this.resourceBundle = resourceBundle;
+    }
 
     public void play() throws IOException, GameBoardLocationCouldNotBeMarkedBecausePlayerIsNotNextMover {
         var game = new Game();
@@ -33,7 +41,11 @@ public class GameController {
 
         this.printerService.printBoard(game);
 
-        System.out.print(MessageFormat.format(resourceBundle.getString("game.requireMoveMessage"), player.toSymbol()));
+        System.out.print(MessageFormat.format(
+                resourceBundle.getString("game.requireMoveMessage"),
+                player.toSymbol()
+        ));
+
         String move = this.bufferedReader.readLine();
         System.out.println();
 
