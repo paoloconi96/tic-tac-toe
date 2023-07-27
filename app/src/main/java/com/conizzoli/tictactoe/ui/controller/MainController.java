@@ -14,6 +14,7 @@ public class MainController {
     private final BufferedReader bufferedReader;
     private final ResourceBundle resourceBundle;
     private final GameController gameController;
+    private final PlayersNameAssignmentController playersNameAssignmentController;
     private final HashMap<String, MenuAction> menuActionHashMap = new HashMap<>();
     {
         menuActionHashMap.put("1", MenuAction.NEW_GAME);
@@ -23,10 +24,11 @@ public class MainController {
     }
 
     @Inject
-    public MainController(BufferedReader bufferedReader, ResourceBundle resourceBundle, GameController gameController) {
+    public MainController(BufferedReader bufferedReader, ResourceBundle resourceBundle, GameController gameController, PlayersNameAssignmentController playersNameAssignmentController) {
         this.bufferedReader = bufferedReader;
         this.resourceBundle = resourceBundle;
         this.gameController = gameController;
+        this.playersNameAssignmentController = playersNameAssignmentController;
     }
 
     public void invoke() throws GameBoardLocationCouldNotBeMarkedBecausePlayerIsNotNextMover, IOException {
@@ -34,13 +36,15 @@ public class MainController {
         System.out.println(resourceBundle.getString("menu.description"));
 
         var numericSelection = this.bufferedReader.readLine();
+        System.out.println();
         var menuSelection = this.menuActionHashMap.get(numericSelection);
 
         if (menuSelection == null) {
             System.out.println(resourceBundle.getString("system.invalidSelection"));
         } else {
             switch (Objects.requireNonNull(menuSelection)) {
-                case ASSIGN_PLAYER_NAMES, RESUME_GAME ->
+                case ASSIGN_PLAYER_NAMES -> this.playersNameAssignmentController.invoke();
+                case RESUME_GAME ->
                         System.out.println(resourceBundle.getString("system.notImplemented"));
                 case NEW_GAME -> this.gameController.play();
                 case EXIT -> {
