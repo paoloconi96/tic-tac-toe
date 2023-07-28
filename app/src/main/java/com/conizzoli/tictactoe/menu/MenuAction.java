@@ -1,5 +1,5 @@
 package com.conizzoli.tictactoe.menu;
 
 public enum MenuAction {
-    ASSIGN_PLAYER_NAMES, NEW_GAME, RESUME_GAME, EXIT
+    EXIT, NEW_MULTIPLAYER_GAME, NEW_SINGLE_PLAYER_GAME, RESUME_GAME, ASSIGN_PLAYER_NAMES
 }

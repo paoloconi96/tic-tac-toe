@@ -8,6 +8,11 @@ These are the features I would like to build next:
 - ~~Players name assignment~~
 - ~~Handle draw game~~
 - Single player match
+  - Add option in the game menu
+  - Respond to human moves randomly
+  - Choose which player you want to be
+  - Respond to human moves with a strategy
+  - ? Implement different difficulty levels ?
 - Improved validation
 - Refactor using SpringBoot
 - Refactor using DDD/CQRS
