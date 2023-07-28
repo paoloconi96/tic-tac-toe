@@ -45,7 +45,7 @@ public class MainController {
           return;
         }
       }
-    } catch (ArrayIndexOutOfBoundsException exception) {
+    } catch (ArrayIndexOutOfBoundsException|NumberFormatException exception) {
       System.out.println(resourceBundle.getString("system.invalidSelection"));
     }
 
