@@ -7,12 +7,7 @@ These are the features I would like to build next:
 - ~~Game menu~~
 - ~~Players name assignment~~
 - ~~Handle draw game~~
-- Single player match
-  - Add option in the game menu
-  - Respond to human moves randomly
-  - Choose which player you want to be
-  - Respond to human moves with a strategy
-  - ? Implement different difficulty levels ?
+- ~~Single player match~~
 - Improved validation
 - Refactor using SpringBoot
 - Refactor using DDD/CQRS
@@ -23,3 +18,4 @@ These are the features I would like to build next:
 - Refactor computeWinner method to handle boards with dynamic sizes
 - Larger board (4x4, 5x5, etc)
 - Web API
+- Choose which player you want to be when playing in single player mode

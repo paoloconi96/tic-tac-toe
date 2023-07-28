@@ -7,16 +7,24 @@ class Board {
   private final Player[][] state = new Player[3][3];
 
   void mark(Player value, BoardLocation boardLocation) throws BoardLocationAlreadyMarkedException {
-    var boardLocationPlayer = this.state[boardLocation.getY()][boardLocation.getX()];
+    var boardLocationPlayer = this.state[boardLocation.column()][boardLocation.row()];
     if (boardLocationPlayer != null) {
       throw new BoardLocationAlreadyMarkedException(boardLocationPlayer);
     }
 
-    this.state[boardLocation.getY()][boardLocation.getX()] = value;
+    this.state[boardLocation.column()][boardLocation.row()] = value;
+  }
+
+  void removeMark(BoardLocation boardLocation) {
+    this.state[boardLocation.column()][boardLocation.row()] = null;
   }
 
   public Player getBoardLocationState(BoardLocation boardLocation) {
-    return this.state[boardLocation.getY()][boardLocation.getX()];
+    return this.state[boardLocation.column()][boardLocation.row()];
+  }
+
+  public boolean isBoardLocationMarked(BoardLocation boardLocation) {
+    return this.state[boardLocation.column()][boardLocation.row()] != null;
   }
 
   Optional<Player> computeWinner() {

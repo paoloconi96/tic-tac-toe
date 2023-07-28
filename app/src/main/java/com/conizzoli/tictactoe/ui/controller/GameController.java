@@ -4,7 +4,9 @@ import com.conizzoli.tictactoe.engine.exception.BoardLocationAlreadyMarkedExcept
 import com.conizzoli.tictactoe.engine.exception.GameBoardLocationCouldNotBeMarkedBecausePlayerIsNotNextMover;
 import com.conizzoli.tictactoe.engine.exception.InvalidBoardLocationException;
 import com.conizzoli.tictactoe.engine.model.BoardLocation;
-import com.conizzoli.tictactoe.engine.model.Game;
+import com.conizzoli.tictactoe.engine.model.GameInterface;
+import com.conizzoli.tictactoe.engine.model.MultiplayerGame;
+import com.conizzoli.tictactoe.engine.model.SinglePlayerGame;
 import com.conizzoli.tictactoe.engine.service.PlayerService;
 import com.conizzoli.tictactoe.engine.service.PrinterService;
 import com.google.inject.Inject;
@@ -31,10 +33,18 @@ public class GameController {
     this.resourceBundle = resourceBundle;
   }
 
-  public void play()
+  public void playSinglePlayer()
       throws IOException, GameBoardLocationCouldNotBeMarkedBecausePlayerIsNotNextMover {
-    var game = new Game();
+    this.play(new SinglePlayerGame());
+  }
 
+  public void playMultiplayer()
+      throws IOException, GameBoardLocationCouldNotBeMarkedBecausePlayerIsNotNextMover {
+    this.play(new MultiplayerGame());
+  }
+
+  private void play(GameInterface game)
+      throws IOException, GameBoardLocationCouldNotBeMarkedBecausePlayerIsNotNextMover {
     while (game.isInProgress()) {
       this.requireMove(game);
     }
@@ -42,7 +52,7 @@ public class GameController {
     this.printerService.printGameOutcome(game);
   }
 
-  private void requireMove(Game game)
+  private void requireMove(GameInterface game)
       throws IOException, GameBoardLocationCouldNotBeMarkedBecausePlayerIsNotNextMover {
     var player = game.getNextMovePlayer();
 

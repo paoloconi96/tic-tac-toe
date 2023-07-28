@@ -39,8 +39,8 @@ public class MainController {
       switch (menuSelection) {
         case ASSIGN_PLAYER_NAMES -> this.playersNameAssignmentController.invoke();
         case RESUME_GAME -> System.out.println(resourceBundle.getString("system.notImplemented"));
-        case NEW_SINGLE_PLAYER_GAME -> this.gameController.play();
-        case NEW_MULTIPLAYER_GAME -> this.gameController.play();
+        case NEW_SINGLE_PLAYER_GAME -> this.gameController.playSinglePlayer();
+        case NEW_MULTIPLAYER_GAME -> this.gameController.playMultiplayer();
         case EXIT -> {
           return;
         }

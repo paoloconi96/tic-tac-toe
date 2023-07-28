@@ -1,7 +1,7 @@
 package com.conizzoli.tictactoe.engine.service;
 
 import com.conizzoli.tictactoe.engine.model.BoardLocation;
-import com.conizzoli.tictactoe.engine.model.Game;
+import com.conizzoli.tictactoe.engine.model.GameInterface;
 import com.google.inject.Inject;
 import java.text.MessageFormat;
 import java.util.ResourceBundle;
@@ -16,7 +16,9 @@ public class PrinterService {
     this.playerService = playerService;
   }
 
-  public void printGameOutcome(Game game) {
+  public void printGameOutcome(GameInterface game) {
+    this.printBoard(game);
+
     switch (game.getStatus()) {
       case WON -> this.printGameWinner(game);
       case DRAW -> System.out.println(resourceBundle.getString("game.drawMessage"));
@@ -24,14 +26,14 @@ public class PrinterService {
     }
   }
 
-  public void printGameWinner(Game game) {
+  public void printGameWinner(GameInterface game) {
     System.out.println(
         MessageFormat.format(
             resourceBundle.getString("game.winnerMessage"),
             this.playerService.getPlayerName(game.getWinner())));
   }
 
-  public void printBoard(Game game) {
+  public void printBoard(GameInterface game) {
     var stringBuilder = new StringBuilder();
     for (var i = 0; i < 3; i++) {
       for (var j = 0; j < 3; j++) {
