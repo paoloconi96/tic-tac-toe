@@ -26,9 +26,12 @@ jobs:
           MAJOR_STRING_TOKEN: '[MAJOR]'
           MINOR_STRING_TOKEN: '[MINOR]'
           PATCH_STRING_TOKEN: '[PATCH]'
+    outputs:
+      new_tag: ${{ steps.bump.outputs.new_tag }}
 
   release:
     runs-on: ubuntu-latest
+    needs: bump
     permissions:
       contents: write
     steps:
@@ -45,4 +48,5 @@ jobs:
       - uses: ncipollo/release-action@v1
         with:
           artifacts: "app/build/distributions/*"
+          tag: ${{ needs.bump.outputs.new_tag }}
 
