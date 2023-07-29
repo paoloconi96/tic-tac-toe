@@ -40,7 +40,7 @@ jobs:
           java-version: '17'
           distribution: 'oracle'
       - name: Build with Gradle
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/gradle-build-action@v2.7.0
         with:
           arguments: build --no-daemon
       - uses: ncipollo/release-action@v1
