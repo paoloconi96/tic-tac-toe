@@ -1,10 +1,9 @@
 package com.conizzoli.tictactoe.engine.service;
 
-import com.conizzoli.tictactoe.engine.model.Player;
-import com.conizzoli.tictactoe.engine.service.PlayerService;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import com.conizzoli.tictactoe.engine.model.Player;
+import org.junit.jupiter.api.Test;
 
 public class PlayerServiceTest {
     private final PlayerService playerService = new PlayerService();

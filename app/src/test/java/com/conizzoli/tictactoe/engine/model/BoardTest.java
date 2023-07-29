@@ -1,12 +1,11 @@
 package com.conizzoli.tictactoe.engine.model;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import com.conizzoli.tictactoe.engine.exception.BoardLocationAlreadyMarkedException;
+import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.provider.ValueSource;
-
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class BoardTest {
     @Test
