@@ -18,16 +18,14 @@ jobs:
           fetch-depth: '0'
 
       - name: Bump version and push tag
+        id: bump_version
         uses: anothrNick/github-tag-action@1.67.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WITH_V: true
-          DEFAULT_BUMP: patch
-          MAJOR_STRING_TOKEN: '[MAJOR]'
-          MINOR_STRING_TOKEN: '[MINOR]'
-          PATCH_STRING_TOKEN: '[PATCH]'
+          DEFAULT_BUMP: false
     outputs:
-      new_tag: ${{ steps.bump.outputs.new_tag }}
+      new_tag: ${{ steps.bump_version.outputs.new_tag }}
 
   release:
     runs-on: ubuntu-latest
