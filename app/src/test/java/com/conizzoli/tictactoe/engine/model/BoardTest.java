@@ -8,10 +8,10 @@ import org.junit.jupiter.api.Test;
 
 public class BoardTest {
     @Test
-    void itComputesDraw() throws BoardLocationAlreadyMarkedException {
+    void itComputesNotDrawIfFullWithWinner() throws BoardLocationAlreadyMarkedException {
         var board = new Board();
         assertFalse(board.computeIsDraw());
-        
+
         board.mark(Player.CROSS, new BoardLocation(0, 0));
         board.mark(Player.CROSS, new BoardLocation(0, 1));
         board.mark(Player.CROSS, new BoardLocation(1, 0));
@@ -22,6 +22,25 @@ public class BoardTest {
         board.mark(Player.CIRCLE, new BoardLocation(1, 1));
         board.mark(Player.CIRCLE, new BoardLocation(1, 2));
         board.mark(Player.CIRCLE, new BoardLocation(2, 2));
+
+        assertFalse(board.computeIsDraw());
+    }
+
+    @Test
+    void itComputesDrawIfFullWithoutWinner() throws BoardLocationAlreadyMarkedException {
+        var board = new Board();
+        assertFalse(board.computeIsDraw());
+
+        board.mark(Player.CROSS, new BoardLocation(0, 1));
+        board.mark(Player.CROSS, new BoardLocation(0, 2));
+        board.mark(Player.CROSS, new BoardLocation(1, 0));
+        board.mark(Player.CROSS, new BoardLocation(2, 1));
+        board.mark(Player.CROSS, new BoardLocation(2, 2));
+
+        board.mark(Player.CIRCLE, new BoardLocation(0, 0));
+        board.mark(Player.CIRCLE, new BoardLocation(1, 1));
+        board.mark(Player.CIRCLE, new BoardLocation(1, 2));
+        board.mark(Player.CIRCLE, new BoardLocation(2, 0));
 
         assertTrue(board.computeIsDraw());
     }

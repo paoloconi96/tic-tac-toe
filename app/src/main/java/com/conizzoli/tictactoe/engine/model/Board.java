@@ -55,6 +55,10 @@ class Board {
   }
 
   boolean computeIsDraw() {
+    if (this.computeWinner().isPresent()) {
+      return false;
+    }
+    
     for (Player[] row : this.state) {
       for (Player cell : row) {
         if (cell == null) {
