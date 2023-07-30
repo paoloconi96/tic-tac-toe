@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import com.conizzoli.tictactoe.engine.exception.BoardLocationAlreadyMarkedException;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.provider.ValueSource;
 
 public class BoardTest {
     @Test
@@ -28,7 +27,6 @@ public class BoardTest {
     }
 
     @Test
-    @ValueSource(ints = {1, 3, 5, -3, 15, Integer.MAX_VALUE}) // six numbers
     void itComputesRowWin() throws BoardLocationAlreadyMarkedException {
         var board = new Board();
         assertEquals(Optional.empty(), board.computeWinner());

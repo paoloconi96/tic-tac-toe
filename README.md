@@ -4,18 +4,17 @@ Also, this is a PET project to better learn Java, Gradle, Spring Boot and the en
 So consider this is the final objective for this project.
 
 These are the features I would like to build next:
-- ~~Game menu~~
-- ~~Players name assignment~~
-- ~~Handle draw game~~
-- ~~Single player match~~
-- Improved validation
-- Refactor using SpringBoot
-- Refactor using DDD/CQRS
-- Engine automated tests
-- UI layer functional tests
-- Single player match: different levels
-- Translations improvements and support for other languages
-- Refactor computeWinner method to handle boards with dynamic sizes
-- Larger board (4x4, 5x5, etc)
-- Web API
-- Choose which player you want to be when playing in single player mode
+1. ~~Game menu~~
+2. ~~Players name assignment~~
+3. ~~Handle draw game~~
+4. ~~Single player match~~
+5. Refactor computeWinner and computerMark
+6. Refactor using SpringBoot
+7. Engine automated tests 
+8. UI layer functional tests 
+9. Web API
+10. Handle multiple matches in parallel
+11. Single player match: different levels 
+12. Translations improvements 
+13. Larger board (4x4, 5x5, etc)
+14. Refactor using DDD/CQRS

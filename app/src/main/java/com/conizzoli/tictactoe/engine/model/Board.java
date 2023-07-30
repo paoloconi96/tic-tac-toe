@@ -29,49 +29,26 @@ class Board {
 
   Optional<Player> computeWinner() {
     // Winner by row
-    outerLoop:
     for (Player[] row : this.state) {
-      if (row[0] == null) {
-        continue;
+      if (row[0] != null && row[0] == row[1] && row[1] == row[2]) {
+        return Optional.of(row[0]);
       }
-
-      var potentialWinner = row[0];
-      for (Player cell : row) {
-        if (cell != potentialWinner) {
-          continue outerLoop;
-        }
-      }
-
-      return Optional.of(potentialWinner);
     }
 
     // Winner by column
-    outerLoop:
     for (var i = 0; i < 3; i++) {
-      if (this.state[0][i] == null) {
-        continue;
+      if (this.state[0][i] != null && this.state[0][i] == this.state[1][i] && this.state[1][i] == this.state[2][i]) {
+        return Optional.of(this.state[0][i]);
       }
-      var potentialWinner = this.state[0][i];
-
-      for (var j = 0; j < 3; j++) {
-        if (this.state[j][i] != potentialWinner) {
-          continue outerLoop;
-        }
-      }
-
-      return Optional.of(potentialWinner);
     }
 
     // Winner by diagonal
-    var potentialWinner = this.state[1][1];
-    if (potentialWinner != null) {
-      if (this.state[0][0] == potentialWinner && this.state[2][2] == potentialWinner) {
-        return Optional.of(potentialWinner);
-      }
+    if (this.state[1][1] != null && this.state[0][0] == this.state[1][1] && this.state[1][1] == this.state[2][2]) {
+      return Optional.of(this.state[1][1]);
 
-      if (this.state[2][0] == potentialWinner && this.state[0][2] == potentialWinner) {
-        return Optional.of(potentialWinner);
-      }
+    }
+    if (this.state[1][1] != null && this.state[2][0] == this.state[1][1] && this.state[1][1] == this.state[0][2]) {
+      return Optional.of(this.state[1][1]);
     }
 
     return Optional.empty();
