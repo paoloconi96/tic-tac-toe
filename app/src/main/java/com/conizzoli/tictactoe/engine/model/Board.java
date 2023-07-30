@@ -1,10 +1,19 @@
 package com.conizzoli.tictactoe.engine.model;
 
 import com.conizzoli.tictactoe.engine.exception.BoardLocationAlreadyMarkedException;
+import java.util.Arrays;
 import java.util.Optional;
 
-class Board {
-  private final Player[][] state = new Player[3][3];
+class Board implements Cloneable {
+  private final Player[][] state;
+
+  Board() {
+     this(new Player[3][3]);
+  }
+
+  private Board(Player[][] state) {
+    this.state = state;
+  }
 
   void mark(Player value, BoardLocation boardLocation) throws BoardLocationAlreadyMarkedException {
     var boardLocationPlayer = this.state[boardLocation.column()][boardLocation.row()];
@@ -13,6 +22,14 @@ class Board {
     }
 
     this.state[boardLocation.column()][boardLocation.row()] = value;
+  }
+
+  void nonBlockingMark(Player player, BoardLocation boardLocation) {
+    try {
+      this.mark(player, boardLocation);
+    } catch (BoardLocationAlreadyMarkedException exception) {
+      throw new RuntimeException(exception);
+    }
   }
 
   void removeMark(BoardLocation boardLocation) {
@@ -68,5 +85,14 @@ class Board {
     }
 
     return true;
+  }
+
+  @Override
+  protected Board clone() {
+    var stateClone = Arrays.stream(this.state)
+      .map(Player[]::clone)
+      .toArray(Player[][]::new);
+
+    return new Board(stateClone);
   }
 }
