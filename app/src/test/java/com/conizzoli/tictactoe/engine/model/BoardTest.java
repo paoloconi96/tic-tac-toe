@@ -5,14 +5,13 @@ import static org.junit.jupiter.api.Assertions.*;
 import com.conizzoli.tictactoe.engine.exception.BoardLocationAlreadyMarkedException;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.provider.ValueSource;
 
 public class BoardTest {
     @Test
-    void itComputesDraw() throws BoardLocationAlreadyMarkedException {
+    void itComputesNotDrawIfFullWithWinner() throws BoardLocationAlreadyMarkedException {
         var board = new Board();
         assertFalse(board.computeIsDraw());
-        
+
         board.mark(Player.CROSS, new BoardLocation(0, 0));
         board.mark(Player.CROSS, new BoardLocation(0, 1));
         board.mark(Player.CROSS, new BoardLocation(1, 0));
@@ -24,11 +23,29 @@ public class BoardTest {
         board.mark(Player.CIRCLE, new BoardLocation(1, 2));
         board.mark(Player.CIRCLE, new BoardLocation(2, 2));
 
+        assertFalse(board.computeIsDraw());
+    }
+
+    @Test
+    void itComputesDrawIfFullWithoutWinner() throws BoardLocationAlreadyMarkedException {
+        var board = new Board();
+        assertFalse(board.computeIsDraw());
+
+        board.mark(Player.CROSS, new BoardLocation(0, 1));
+        board.mark(Player.CROSS, new BoardLocation(0, 2));
+        board.mark(Player.CROSS, new BoardLocation(1, 0));
+        board.mark(Player.CROSS, new BoardLocation(2, 1));
+        board.mark(Player.CROSS, new BoardLocation(2, 2));
+
+        board.mark(Player.CIRCLE, new BoardLocation(0, 0));
+        board.mark(Player.CIRCLE, new BoardLocation(1, 1));
+        board.mark(Player.CIRCLE, new BoardLocation(1, 2));
+        board.mark(Player.CIRCLE, new BoardLocation(2, 0));
+
         assertTrue(board.computeIsDraw());
     }
 
     @Test
-    @ValueSource(ints = {1, 3, 5, -3, 15, Integer.MAX_VALUE}) // six numbers
     void itComputesRowWin() throws BoardLocationAlreadyMarkedException {
         var board = new Board();
         assertEquals(Optional.empty(), board.computeWinner());
