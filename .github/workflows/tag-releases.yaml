@@ -45,6 +45,6 @@ jobs:
           arguments: build --no-daemon
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: "app/build/distributions/*"
+          artifacts: "build/libs/*"
           tag: ${{ needs.bump.outputs.new_tag }}
 
