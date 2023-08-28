@@ -1,4 +1,4 @@
-package com.conizzoli.tictactoe.ui.controller;
+package com.conizzoli.tictactoe.controller;
 
 import com.conizzoli.tictactoe.engine.exception.BoardLocationAlreadyMarkedException;
 import com.conizzoli.tictactoe.engine.exception.GameBoardLocationCouldNotBeMarkedBecausePlayerIsNotNextMover;
