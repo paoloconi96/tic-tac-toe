@@ -36,8 +36,8 @@ class Board implements Cloneable {
     this.state[boardLocation.column()][boardLocation.row()] = null;
   }
 
-  public Player getBoardLocationState(BoardLocation boardLocation) {
-    return this.state[boardLocation.column()][boardLocation.row()];
+  public Optional<Player> getBoardLocationState(BoardLocation boardLocation) {
+    return Optional.ofNullable(this.state[boardLocation.column()][boardLocation.row()]);
   }
 
   public boolean isBoardLocationMarked(BoardLocation boardLocation) {

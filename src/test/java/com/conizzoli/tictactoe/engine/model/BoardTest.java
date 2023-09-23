@@ -4,7 +4,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import com.conizzoli.tictactoe.engine.exception.BoardLocationAlreadyMarkedException;
 import java.util.Optional;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import javax.swing.text.html.Option;
 
 public class BoardTest {
     @Test
@@ -98,11 +102,11 @@ public class BoardTest {
         var board = new Board();
         var boardLocation = new BoardLocation(0, 0);
 
-        assertNull(board.getBoardLocationState(boardLocation));
+        Assertions.assertFalse(board.getBoardLocationState(boardLocation).isPresent());
 
         board.mark(Player.CROSS, boardLocation);
 
-        assertEquals(Player.CROSS, board.getBoardLocationState(boardLocation));
+        Assertions.assertEquals(Optional.of(Player.CROSS), board.getBoardLocationState(boardLocation));
     }
 
     @Test
@@ -111,7 +115,7 @@ public class BoardTest {
         var boardLocation = new BoardLocation(0, 0);
 
         board.mark(Player.CROSS, boardLocation);
-        assertNotNull(board.getBoardLocationState(boardLocation));
+        Assertions.assertTrue(board.getBoardLocationState(boardLocation).isPresent());
 
         assertThrows(BoardLocationAlreadyMarkedException.class, () -> {
             board.mark(Player.CROSS, boardLocation);

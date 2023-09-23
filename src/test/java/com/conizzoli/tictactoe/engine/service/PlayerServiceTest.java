@@ -1,27 +1,35 @@
 package com.conizzoli.tictactoe.engine.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 import com.conizzoli.tictactoe.engine.model.Player;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public class PlayerServiceTest {
     private final PlayerService playerService = new PlayerService();
 
-    @Test
-    void itAssignsName() {
-        var playerCircleName = "Player Circle Name";
+    @ParameterizedTest
+    @MethodSource("provideAssignNamesUseCases")
+    void itAssignsNames(Player player, String name) {
+        this.playerService.assignName(player, name);
+        assertSame(name, this.playerService.getPlayerName(player));
+    }
 
-        this.playerService.assignName(Player.CIRCLE, playerCircleName);
-        assertEquals(playerCircleName, this.playerService.getPlayerName(Player.CIRCLE));
+    static Stream<Object> provideAssignNamesUseCases() {
+        return Stream.of(
+          Arguments.of(Player.CIRCLE, "Circle Updated"),
+          Arguments.of(Player.CROSS, "Cross Updated")
+        );
     }
 
     @Test
     void itProvidesDefaultPlayerNames() {
-        var playerNamesMap = this.playerService.getPlayerNamesMap();
-
-        assertEquals(2, playerNamesMap.size());
-        assertEquals("Circle", playerNamesMap.get(Player.CIRCLE));
-        assertEquals("Cross", playerNamesMap.get(Player.CROSS));
+        assertEquals("Circle", this.playerService.getPlayerName(Player.CIRCLE));
+        assertEquals("Cross", this.playerService.getPlayerName(Player.CROSS));
     }
 }

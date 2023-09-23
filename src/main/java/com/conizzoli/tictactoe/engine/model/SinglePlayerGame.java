@@ -7,7 +7,11 @@ import java.util.Random;
 import java.util.stream.IntStream;
 
 public class SinglePlayerGame extends AbstractGame {
-  private final Random random = new Random();
+  private final Random random;
+
+  public SinglePlayerGame(Random random) {
+    this.random = random;
+  }
 
   public void mark(Player player, BoardLocation boardLocation)
       throws BoardLocationAlreadyMarkedException,

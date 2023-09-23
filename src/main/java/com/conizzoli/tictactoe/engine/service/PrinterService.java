@@ -30,7 +30,7 @@ public class PrinterService {
     System.out.println(
         MessageFormat.format(
             resourceBundle.getString("game.winnerMessage"),
-            this.playerService.getPlayerName(game.getWinner())));
+            this.playerService.getPlayerName(game.getWinner().get())));
   }
 
   public void printBoard(GameInterface game) {
@@ -39,7 +39,7 @@ public class PrinterService {
       for (var j = 0; j < 3; j++) {
         var state = game.getBoardLocationState(new BoardLocation(j, i));
 
-        stringBuilder.append(state != null ? state.toSymbol() : j + (i * 3));
+        stringBuilder.append(state.isPresent() ? state.get().toSymbol() : j + (i * 3));
         stringBuilder.append(' ');
       }
 

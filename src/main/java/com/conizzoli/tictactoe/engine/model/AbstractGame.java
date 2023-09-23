@@ -1,5 +1,7 @@
 package com.conizzoli.tictactoe.engine.model;
 
+import java.util.Optional;
+
 abstract class AbstractGame implements GameInterface {
   protected final Board board;
   protected Player winner;
@@ -9,13 +11,8 @@ abstract class AbstractGame implements GameInterface {
     this.board = new Board();
   }
 
-  @Override
-  public String toString() {
-    return this.board.toString();
-  }
-
-  public Player getWinner() {
-    return winner;
+  public Optional<Player> getWinner() {
+    return Optional.ofNullable(winner);
   }
 
   public boolean isInProgress() {
@@ -26,7 +23,7 @@ abstract class AbstractGame implements GameInterface {
     return status;
   }
 
-  public Player getBoardLocationState(BoardLocation boardLocation) {
+  public Optional<Player> getBoardLocationState(BoardLocation boardLocation) {
     return this.board.getBoardLocationState(boardLocation);
   }
 }

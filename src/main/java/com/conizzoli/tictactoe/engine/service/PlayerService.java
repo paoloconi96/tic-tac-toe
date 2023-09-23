@@ -16,11 +16,7 @@ public class PlayerService {
   public void assignName(Player player, String newName) {
     this.playerNamesMap.put(player, newName);
   }
-
-  public EnumMap<Player, String> getPlayerNamesMap() {
-    return this.playerNamesMap;
-  }
-
+  
   public String getPlayerName(Player player) {
     return this.playerNamesMap.get(player);
   }
