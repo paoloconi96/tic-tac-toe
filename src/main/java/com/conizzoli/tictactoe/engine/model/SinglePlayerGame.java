@@ -2,6 +2,8 @@ package com.conizzoli.tictactoe.engine.model;
 
 import com.conizzoli.tictactoe.engine.exception.BoardLocationAlreadyMarkedException;
 import com.conizzoli.tictactoe.engine.exception.GameBoardLocationCouldNotBeMarkedBecausePlayerIsNotNextMover;
+
+import java.util.Comparator;
 import java.util.Objects;
 import java.util.Random;
 import java.util.stream.IntStream;
@@ -54,7 +56,7 @@ public class SinglePlayerGame extends AbstractGame {
                   return new Move(moveVal, boardLocation);
                 })
             .filter(Objects::nonNull)
-            .sorted()
+            .sorted(Comparator.reverseOrder())
             .skip(random.nextInt(100) <= 75 ? 0 : 1)
             .findFirst();
 

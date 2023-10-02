@@ -7,7 +7,7 @@ record Move(int value, int row, int column) implements Comparable<Move> {
 
   @Override
   public int compareTo(Move compareMove) {
-    return compareMove.value - value;
+    return value - compareMove.value;
   }
 
   public BoardLocation toBoardLocation() {
