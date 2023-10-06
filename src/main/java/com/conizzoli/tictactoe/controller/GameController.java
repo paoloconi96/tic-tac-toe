@@ -13,6 +13,7 @@ import com.google.inject.Inject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.text.MessageFormat;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 public class GameController {
@@ -20,22 +21,25 @@ public class GameController {
   private final PlayerService playerService;
   private final BufferedReader bufferedReader;
   private final ResourceBundle resourceBundle;
+  private final Random random;
 
   @Inject
   public GameController(
       PrinterService printerService,
       PlayerService playerService,
       BufferedReader bufferedReader,
-      ResourceBundle resourceBundle) {
+      ResourceBundle resourceBundle,
+      Random random) {
     this.printerService = printerService;
     this.playerService = playerService;
     this.bufferedReader = bufferedReader;
     this.resourceBundle = resourceBundle;
+    this.random = random;
   }
 
   public void playSinglePlayer()
       throws IOException, GameBoardLocationCouldNotBeMarkedBecausePlayerIsNotNextMover {
-    this.play(new SinglePlayerGame());
+    this.play(new SinglePlayerGame(this.random));
   }
 
   public void playMultiplayer()

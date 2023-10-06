@@ -26,7 +26,11 @@ public class MultiplayerGame extends AbstractGame {
       this.status = GameStatus.DRAW;
     }
 
-    this.nextMovePlayer = this.nextMovePlayer == Player.CROSS ? Player.CIRCLE : Player.CROSS;
+    if (this.nextMovePlayer == Player.CROSS) {
+      this.nextMovePlayer = Player.CIRCLE;
+    } else {
+      this.nextMovePlayer = Player.CROSS;
+    }
   }
 
   public Player getNextMovePlayer() {

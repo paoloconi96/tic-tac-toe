@@ -6,7 +6,6 @@ import com.google.inject.Inject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.text.MessageFormat;
-import java.util.EnumMap;
 import java.util.ResourceBundle;
 
 public class PlayersNameAssignmentController {
@@ -23,28 +22,26 @@ public class PlayersNameAssignmentController {
   }
 
   public void invoke() throws IOException {
-    var playerNamesMap = this.playerService.getPlayerNamesMap();
-
-    this.updateNameFor(Player.CROSS, playerNamesMap);
-    this.updateNameFor(Player.CIRCLE, playerNamesMap);
+    this.updateNameFor(Player.CROSS);
+    this.updateNameFor(Player.CIRCLE);
 
     System.out.println(
         MessageFormat.format(
             resourceBundle.getString("assignPlayerNames.currentStatusMessage"),
-            playerNamesMap.get(Player.CROSS),
-            playerNamesMap.get(Player.CIRCLE)));
+            this.playerService.getPlayerName(Player.CROSS),
+            this.playerService.getPlayerName(Player.CIRCLE)));
   }
 
-  private void updateNameFor(Player player, EnumMap<Player, String> playerNamesMap)
+  private void updateNameFor(Player player)
       throws IOException {
     System.out.println(
         MessageFormat.format(
             resourceBundle.getString("assignPlayerNames.insertNewNameDescription"),
             player.name(),
-            playerNamesMap.get(player)));
+            this.playerService.getPlayerName(player)));
 
     var newName = this.bufferedReader.readLine();
-    if (newName.equals("")) {
+    if (newName.isEmpty()) {
       return;
     }
 
