@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		https://www.springframework.org/schema/context/spring-context.xsd">
+    <bean id="customBeansFactory" class="com.conizzoli.tictactoe.CustomBeansFactory"/>
+
+    <bean id="bufferedReader" factory-bean="customBeansFactory" factory-method="createBufferedReader"/>
+    <bean id="resourceBundle" factory-bean="customBeansFactory" factory-method="createResourceBundle"/>
+
+    <context:component-scan base-package="com.conizzoli.tictactoe">
+        <context:include-filter type="regex" expression=".*\.controller\..*"/>
+        <context:include-filter type="regex" expression=".*\.engine\.service\..*"/>
+    </context:component-scan>
+</beans>

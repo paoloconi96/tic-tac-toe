@@ -2,7 +2,6 @@ package com.conizzoli.tictactoe.engine.service;
 
 import com.conizzoli.tictactoe.engine.model.BoardLocation;
 import com.conizzoli.tictactoe.engine.model.GameInterface;
-import com.google.inject.Inject;
 import java.text.MessageFormat;
 import java.util.ResourceBundle;
 
@@ -10,7 +9,6 @@ public class PrinterService {
   private final ResourceBundle resourceBundle;
   private final PlayerService playerService;
 
-  @Inject
   public PrinterService(ResourceBundle resourceBundle, PlayerService playerService) {
     this.resourceBundle = resourceBundle;
     this.playerService = playerService;

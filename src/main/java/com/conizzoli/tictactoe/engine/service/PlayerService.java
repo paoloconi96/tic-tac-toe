@@ -1,10 +1,8 @@
 package com.conizzoli.tictactoe.engine.service;
 
 import com.conizzoli.tictactoe.engine.model.Player;
-import com.google.inject.Singleton;
 import java.util.EnumMap;
 
-@Singleton
 public class PlayerService {
   EnumMap<Player, String> playerNamesMap = new EnumMap<>(Player.class);
 

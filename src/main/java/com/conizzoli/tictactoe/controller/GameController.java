@@ -9,7 +9,6 @@ import com.conizzoli.tictactoe.engine.model.MultiplayerGame;
 import com.conizzoli.tictactoe.engine.model.SinglePlayerGame;
 import com.conizzoli.tictactoe.engine.service.PlayerService;
 import com.conizzoli.tictactoe.engine.service.PrinterService;
-import com.google.inject.Inject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.text.MessageFormat;
@@ -21,25 +20,21 @@ public class GameController {
   private final PlayerService playerService;
   private final BufferedReader bufferedReader;
   private final ResourceBundle resourceBundle;
-  private final Random random;
 
-  @Inject
   public GameController(
       PrinterService printerService,
       PlayerService playerService,
       BufferedReader bufferedReader,
-      ResourceBundle resourceBundle,
-      Random random) {
+      ResourceBundle resourceBundle) {
     this.printerService = printerService;
     this.playerService = playerService;
     this.bufferedReader = bufferedReader;
     this.resourceBundle = resourceBundle;
-    this.random = random;
   }
 
   public void playSinglePlayer()
       throws IOException, GameBoardLocationCouldNotBeMarkedBecausePlayerIsNotNextMover {
-    this.play(new SinglePlayerGame(this.random));
+    this.play(new SinglePlayerGame(new Random()));
   }
 
   public void playMultiplayer()
