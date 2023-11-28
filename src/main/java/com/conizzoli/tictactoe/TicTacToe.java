@@ -1,7 +1,7 @@
 package com.conizzoli.tictactoe;
 
-import com.conizzoli.tictactoe.controller.MainController;
-import com.conizzoli.tictactoe.engine.exception.GameBoardLocationCouldNotBeMarkedBecausePlayerIsNotNextMover;
+import com.conizzoli.tictactoe.ui.controller.MainController;
+import com.conizzoli.tictactoe.domain.exception.GameBoardLocationCouldNotBeMarkedBecausePlayerIsNotNextMover;
 import java.io.IOException;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
