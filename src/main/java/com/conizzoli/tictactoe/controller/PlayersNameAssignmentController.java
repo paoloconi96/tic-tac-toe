@@ -2,7 +2,6 @@ package com.conizzoli.tictactoe.controller;
 
 import com.conizzoli.tictactoe.engine.model.Player;
 import com.conizzoli.tictactoe.engine.service.PlayerService;
-import com.google.inject.Inject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.text.MessageFormat;
@@ -13,7 +12,6 @@ public class PlayersNameAssignmentController {
   private final ResourceBundle resourceBundle;
   private final BufferedReader bufferedReader;
 
-  @Inject
   public PlayersNameAssignmentController(
       PlayerService playerService, ResourceBundle resourceBundle, BufferedReader bufferedReader) {
     this.playerService = playerService;

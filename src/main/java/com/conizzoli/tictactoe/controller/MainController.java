@@ -2,7 +2,6 @@ package com.conizzoli.tictactoe.controller;
 
 import com.conizzoli.tictactoe.engine.exception.GameBoardLocationCouldNotBeMarkedBecausePlayerIsNotNextMover;
 import com.conizzoli.tictactoe.menu.MenuAction;
-import com.google.inject.Inject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ResourceBundle;
@@ -13,7 +12,6 @@ public class MainController {
   private final GameController gameController;
   private final PlayersNameAssignmentController playersNameAssignmentController;
 
-  @Inject
   public MainController(
       BufferedReader bufferedReader,
       ResourceBundle resourceBundle,
