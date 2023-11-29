@@ -1,18 +1,22 @@
 package com.conizzoli.tictactoe.ui.controller;
 
+import com.conizzoli.tictactoe.application.service.CreateSinglePlayerGame;
+import com.conizzoli.tictactoe.application.service.GetSinglePlayerGame;
 import com.conizzoli.tictactoe.domain.exception.BoardLocationAlreadyMarkedException;
 import com.conizzoli.tictactoe.domain.exception.GameBoardLocationCouldNotBeMarkedBecausePlayerIsNotNextMover;
 import com.conizzoli.tictactoe.domain.exception.InvalidBoardLocationException;
+import com.conizzoli.tictactoe.domain.exception.SinglePlayerGameCouldNotBeFound;
 import com.conizzoli.tictactoe.domain.model.BoardLocation;
 import com.conizzoli.tictactoe.domain.model.GameInterface;
 import com.conizzoli.tictactoe.domain.model.MultiplayerGame;
 import com.conizzoli.tictactoe.domain.model.SinglePlayerGame;
+import com.conizzoli.tictactoe.domain.repository.SinglePlayerIdGeneratorInterface;
 import com.conizzoli.tictactoe.domain.service.PlayerService;
 import com.conizzoli.tictactoe.domain.service.PrinterService;
+import com.conizzoli.tictactoe.ui.exception.SinglePlayerGameCouldNotBeStarted;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.text.MessageFormat;
-import java.util.Random;
 import java.util.ResourceBundle;
 
 public class GameController {
@@ -20,21 +24,40 @@ public class GameController {
   private final PlayerService playerService;
   private final BufferedReader bufferedReader;
   private final ResourceBundle resourceBundle;
+  private final CreateSinglePlayerGame createSinglePlayerGame;
+  private final GetSinglePlayerGame getSinglePlayerGame;
+  private final SinglePlayerIdGeneratorInterface singlePlayerIdGenerator;
 
   public GameController(
       PrinterService printerService,
       PlayerService playerService,
       BufferedReader bufferedReader,
-      ResourceBundle resourceBundle) {
+      ResourceBundle resourceBundle,
+      CreateSinglePlayerGame createSinglePlayerGame,
+      GetSinglePlayerGame getSinglePlayerGame,
+      SinglePlayerIdGeneratorInterface singlePlayerIdGenerator) {
     this.printerService = printerService;
     this.playerService = playerService;
     this.bufferedReader = bufferedReader;
     this.resourceBundle = resourceBundle;
+    this.createSinglePlayerGame = createSinglePlayerGame;
+    this.getSinglePlayerGame = getSinglePlayerGame;
+    this.singlePlayerIdGenerator = singlePlayerIdGenerator;
   }
 
   public void playSinglePlayer()
       throws IOException, GameBoardLocationCouldNotBeMarkedBecausePlayerIsNotNextMover {
-    this.play(new SinglePlayerGame(new Random()));
+    var gameId = singlePlayerIdGenerator.generateSinglePlayerGameId();
+    this.createSinglePlayerGame.handle(gameId);
+
+    SinglePlayerGame game;
+    try {
+      game = this.getSinglePlayerGame.handle(gameId);
+    } catch (SinglePlayerGameCouldNotBeFound exception) {
+      throw new SinglePlayerGameCouldNotBeStarted(exception);
+    }
+
+    this.play(game);
   }
 
   public void playMultiplayer()

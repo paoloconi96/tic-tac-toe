@@ -12,7 +12,17 @@
     <bean id="resourceBundle" factory-bean="customBeansFactory" factory-method="createResourceBundle"/>
 
     <context:component-scan base-package="com.conizzoli.tictactoe">
-        <context:include-filter type="regex" expression=".*\.controller\..*"/>
+        <!-- Domain layer beans -->
         <context:include-filter type="regex" expression=".*\.domain\.service\..*"/>
+        <context:include-filter type="regex" expression=".*\.domain\.repository\..*"/>
+
+        <!-- Application layer beans -->
+        <context:include-filter type="regex" expression=".*\.application\.service\..*"/>
+
+        <!-- Infrastructure layer beans -->
+        <context:include-filter type="regex" expression=".*\.infrastructure\..*repository\..*"/>
+
+        <!-- UI layer beans -->
+        <context:include-filter type="regex" expression=".*\.ui\.controller\..*"/>
     </context:component-scan>
 </beans>
