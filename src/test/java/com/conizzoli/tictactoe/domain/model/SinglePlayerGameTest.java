@@ -4,6 +4,8 @@ import com.conizzoli.tictactoe.domain.exception.BoardLocationAlreadyMarkedExcept
 import com.conizzoli.tictactoe.domain.exception.GameBoardLocationCouldNotBeMarkedBecausePlayerIsNotNextMover;
 import java.util.Optional;
 import java.util.Random;
+import java.util.UUID;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,7 +20,7 @@ public class SinglePlayerGameTest {
 
   @Test
   public void itAlwaysGetCrossAsNextMovePlayer() throws GameBoardLocationCouldNotBeMarkedBecausePlayerIsNotNextMover, BoardLocationAlreadyMarkedException {
-    var game = new SinglePlayerGame(new Random());
+    var game = new SinglePlayerGame(new SinglePlayerGameId(UUID.randomUUID()), new Random());
     Assertions.assertSame(Player.CROSS, game.getNextMovePlayer());
     game.mark(Player.CROSS, new BoardLocation(0, 0));
     Assertions.assertSame(Player.CROSS, game.getNextMovePlayer());
@@ -28,7 +30,7 @@ public class SinglePlayerGameTest {
   public void itMarksCorrectlyForComputerWith100PercentPrecision() throws GameBoardLocationCouldNotBeMarkedBecausePlayerIsNotNextMover, BoardLocationAlreadyMarkedException {
     Mockito.when(this.randomMock.nextInt(100))
       .thenReturn(50);
-    var game = new SinglePlayerGame(this.randomMock);
+    var game = new SinglePlayerGame(new SinglePlayerGameId(UUID.randomUUID()), this.randomMock);
 
     game.mark(Player.CROSS, new BoardLocation(1, 1));
     Assertions.assertEquals(Optional.of(Player.CIRCLE), game.getBoardLocationState(new BoardLocation(0, 0)));
@@ -51,7 +53,7 @@ public class SinglePlayerGameTest {
   public void itMarksCorrectlyForComputerWith75PercentPrecision() throws GameBoardLocationCouldNotBeMarkedBecausePlayerIsNotNextMover, BoardLocationAlreadyMarkedException {
     Mockito.when(this.randomMock.nextInt(100))
       .thenReturn(100);
-    var game = new SinglePlayerGame(this.randomMock);
+    var game = new SinglePlayerGame(new SinglePlayerGameId(UUID.randomUUID()), this.randomMock);
 
     game.mark(Player.CROSS, new BoardLocation(1, 1));
     Assertions.assertEquals(Optional.of(Player.CIRCLE), game.getBoardLocationState(new BoardLocation(0, 2)));
@@ -72,7 +74,7 @@ public class SinglePlayerGameTest {
 
   @Test
   public void itThrowsWhenTryingToMarkAsCircle() {
-    var game = new SinglePlayerGame(new Random());
+    var game = new SinglePlayerGame(new SinglePlayerGameId(UUID.randomUUID()), new Random());
     Assertions.assertThrows(
       GameBoardLocationCouldNotBeMarkedBecausePlayerIsNotNextMover.class,
       () -> game.mark(Player.CIRCLE, new BoardLocation(0, 0))

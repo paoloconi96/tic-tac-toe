@@ -34,6 +34,6 @@ public class MultiplayerGame extends AbstractGame {
   }
 
   public Player getNextMovePlayer() {
-    return nextMovePlayer;
+    return this.nextMovePlayer;
   }
 }

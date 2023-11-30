@@ -47,7 +47,7 @@ public class GameController {
 
   public void playSinglePlayer()
       throws IOException, GameBoardLocationCouldNotBeMarkedBecausePlayerIsNotNextMover {
-    var gameId = singlePlayerIdGenerator.generateSinglePlayerGameId();
+    var gameId = this.singlePlayerIdGenerator.generateSinglePlayerGameId();
     this.createSinglePlayerGame.handle(gameId);
 
     SinglePlayerGame game;
@@ -82,8 +82,8 @@ public class GameController {
 
     System.out.print(
         MessageFormat.format(
-            resourceBundle.getString("game.requireMoveMessage"),
-            playerService.getPlayerName(player)));
+            this.resourceBundle.getString("game.requireMoveMessage"),
+            this.playerService.getPlayerName(player)));
     String move = this.bufferedReader.readLine();
     System.out.println();
 
@@ -91,7 +91,7 @@ public class GameController {
     try {
       boardLocation = BoardLocation.createFromString(move);
     } catch (InvalidBoardLocationException exception) {
-      System.out.println(resourceBundle.getString("boardLocation.invalidMessage"));
+      System.out.println(this.resourceBundle.getString("boardLocation.invalidMessage"));
       System.out.println();
       return;
     }
@@ -101,7 +101,7 @@ public class GameController {
     } catch (BoardLocationAlreadyMarkedException exception) {
       System.out.println(
           MessageFormat.format(
-              resourceBundle.getString("boardLocation.alreadyMarkedMessage"),
+              this.resourceBundle.getString("boardLocation.alreadyMarkedMessage"),
               exception.getPlayer().toSymbol()));
     }
   }

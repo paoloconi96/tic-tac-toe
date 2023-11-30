@@ -12,7 +12,7 @@ abstract class AbstractGame implements GameInterface {
   }
 
   public Optional<Player> getWinner() {
-    return Optional.ofNullable(winner);
+    return Optional.ofNullable(this.winner);
   }
 
   public boolean isInProgress() {
@@ -20,7 +20,7 @@ abstract class AbstractGame implements GameInterface {
   }
 
   public GameStatus getStatus() {
-    return status;
+    return this.status;
   }
 
   public Optional<Player> getBoardLocationState(BoardLocation boardLocation) {

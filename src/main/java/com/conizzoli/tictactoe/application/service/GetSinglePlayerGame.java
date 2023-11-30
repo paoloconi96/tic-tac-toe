@@ -13,7 +13,8 @@ public class GetSinglePlayerGame {
     this.singlePlayerRepository = singlePlayerRepository;
   }
 
-  public SinglePlayerGame handle(@NonNull SinglePlayerGameId id) throws SinglePlayerGameCouldNotBeFound {
+  public SinglePlayerGame handle(@NonNull SinglePlayerGameId id)
+      throws SinglePlayerGameCouldNotBeFound {
     return this.singlePlayerRepository.findById(id);
   }
 }

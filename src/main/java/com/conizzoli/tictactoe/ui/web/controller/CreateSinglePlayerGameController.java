@@ -15,14 +15,11 @@ import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 public class CreateSinglePlayerGameController {
-  @Autowired
-  SinglePlayerIdGeneratorInterface singlePlayerIdGenerator;
+  @Autowired SinglePlayerIdGeneratorInterface singlePlayerIdGenerator;
 
-  @Autowired
-  CreateSinglePlayerGame createSinglePlayerGame;
+  @Autowired CreateSinglePlayerGame createSinglePlayerGame;
 
-  @Autowired
-  GetSinglePlayerGame getSinglePlayerGame;
+  @Autowired GetSinglePlayerGame getSinglePlayerGame;
 
   @GetMapping(name = "game.single_player.create", path = "/api/v1/game/single-player")
   @ResponseStatus(HttpStatus.CREATED)

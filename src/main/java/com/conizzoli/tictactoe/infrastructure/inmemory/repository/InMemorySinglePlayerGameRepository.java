@@ -1,4 +1,4 @@
-package com.conizzoli.tictactoe.infrastructure.in_memory.repository;
+package com.conizzoli.tictactoe.infrastructure.inmemory.repository;
 
 import com.conizzoli.tictactoe.domain.exception.SinglePlayerGameCouldNotBeFound;
 import com.conizzoli.tictactoe.domain.model.SinglePlayerGame;
@@ -17,7 +17,8 @@ public class InMemorySinglePlayerGameRepository implements SinglePlayerRepositor
   }
 
   @Override
-  public @NonNull SinglePlayerGame findById(@NonNull SinglePlayerGameId id) throws SinglePlayerGameCouldNotBeFound {
+  public @NonNull SinglePlayerGame findById(@NonNull SinglePlayerGameId id)
+      throws SinglePlayerGameCouldNotBeFound {
     var game = this.games.get(id);
 
     if (game == null) {

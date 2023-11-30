@@ -8,7 +8,7 @@ class Board implements Cloneable {
   private final Player[][] state;
 
   Board() {
-     this(new Player[3][3]);
+    this(new Player[3][3]);
   }
 
   private Board(Player[][] state) {
@@ -54,17 +54,22 @@ class Board implements Cloneable {
 
     // Winner by column
     for (var i = 0; i < 3; i++) {
-      if (this.state[0][i] != null && this.state[0][i] == this.state[1][i] && this.state[1][i] == this.state[2][i]) {
+      if (this.state[0][i] != null
+          && this.state[0][i] == this.state[1][i]
+          && this.state[1][i] == this.state[2][i]) {
         return Optional.of(this.state[0][i]);
       }
     }
 
     // Winner by diagonal
-    if (this.state[1][1] != null && this.state[0][0] == this.state[1][1] && this.state[1][1] == this.state[2][2]) {
+    if (this.state[1][1] != null
+        && this.state[0][0] == this.state[1][1]
+        && this.state[1][1] == this.state[2][2]) {
       return Optional.of(this.state[1][1]);
-
     }
-    if (this.state[1][1] != null && this.state[2][0] == this.state[1][1] && this.state[1][1] == this.state[0][2]) {
+    if (this.state[1][1] != null
+        && this.state[2][0] == this.state[1][1]
+        && this.state[1][1] == this.state[0][2]) {
       return Optional.of(this.state[1][1]);
     }
 
@@ -75,7 +80,7 @@ class Board implements Cloneable {
     if (this.computeWinner().isPresent()) {
       return false;
     }
-    
+
     for (Player[] row : this.state) {
       for (Player cell : row) {
         if (cell == null) {
@@ -89,9 +94,7 @@ class Board implements Cloneable {
 
   @Override
   protected Board clone() {
-    var stateClone = Arrays.stream(this.state)
-      .map(Player[]::clone)
-      .toArray(Player[][]::new);
+    var stateClone = Arrays.stream(this.state).map(Player[]::clone).toArray(Player[][]::new);
 
     return new Board(stateClone);
   }

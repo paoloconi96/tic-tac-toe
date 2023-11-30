@@ -2,7 +2,7 @@ package com.conizzoli.shared.domain;
 
 import java.util.UUID;
 
-abstract public class AbstractUuid {
+public abstract class AbstractUuid {
   private final UUID value;
 
   public AbstractUuid(UUID value) {
@@ -15,7 +15,7 @@ abstract public class AbstractUuid {
 
   @Override
   public String toString() {
-    return value.toString();
+    return this.value.toString();
   }
 
   @Override

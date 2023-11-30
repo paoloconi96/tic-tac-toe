@@ -26,7 +26,7 @@ public class MainController {
   public void invoke()
       throws GameBoardLocationCouldNotBeMarkedBecausePlayerIsNotNextMover, IOException {
     System.out.println();
-    System.out.println(resourceBundle.getString("menu.description"));
+    System.out.println(this.resourceBundle.getString("menu.description"));
 
     var numericSelection = this.bufferedReader.readLine();
     System.out.println();
@@ -36,15 +36,15 @@ public class MainController {
 
       switch (menuSelection) {
         case ASSIGN_PLAYER_NAMES -> this.playersNameAssignmentController.invoke();
-        case RESUME_GAME -> System.out.println(resourceBundle.getString("system.notImplemented"));
+        case RESUME_GAME -> System.out.println(this.resourceBundle.getString("system.notImplemented"));
         case NEW_SINGLE_PLAYER_GAME -> this.gameController.playSinglePlayer();
         case NEW_MULTIPLAYER_GAME -> this.gameController.playMultiplayer();
         case EXIT -> {
           return;
         }
       }
-    } catch (ArrayIndexOutOfBoundsException|NumberFormatException exception) {
-      System.out.println(resourceBundle.getString("system.invalidSelection"));
+    } catch (ArrayIndexOutOfBoundsException | NumberFormatException exception) {
+      System.out.println(this.resourceBundle.getString("system.invalidSelection"));
     }
 
     this.invoke();

@@ -11,6 +11,6 @@ public class BoardLocationAlreadyMarkedException extends Exception {
   }
 
   public Player getPlayer() {
-    return player;
+    return this.player;
   }
 }

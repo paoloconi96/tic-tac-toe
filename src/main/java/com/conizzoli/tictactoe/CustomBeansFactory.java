@@ -10,8 +10,7 @@ import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilde
 import org.springframework.context.ConfigurableApplicationContext;
 
 public class CustomBeansFactory {
-  @Autowired
-  ConfigurableApplicationContext context;
+  @Autowired ConfigurableApplicationContext context;
 
   public BufferedReader createBufferedReader() {
     return new BufferedReader(new InputStreamReader(System.in));

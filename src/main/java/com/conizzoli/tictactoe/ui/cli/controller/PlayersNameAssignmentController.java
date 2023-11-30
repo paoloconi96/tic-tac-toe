@@ -25,16 +25,15 @@ public class PlayersNameAssignmentController {
 
     System.out.println(
         MessageFormat.format(
-            resourceBundle.getString("assignPlayerNames.currentStatusMessage"),
+            this.resourceBundle.getString("assignPlayerNames.currentStatusMessage"),
             this.playerService.getPlayerName(Player.CROSS),
             this.playerService.getPlayerName(Player.CIRCLE)));
   }
 
-  private void updateNameFor(Player player)
-      throws IOException {
+  private void updateNameFor(Player player) throws IOException {
     System.out.println(
         MessageFormat.format(
-            resourceBundle.getString("assignPlayerNames.insertNewNameDescription"),
+            this.resourceBundle.getString("assignPlayerNames.insertNewNameDescription"),
             player.name(),
             this.playerService.getPlayerName(player)));
 

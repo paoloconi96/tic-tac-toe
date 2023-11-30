@@ -14,7 +14,7 @@ public class PlayerService {
   public void assignName(Player player, String newName) {
     this.playerNamesMap.put(player, newName);
   }
-  
+
   public String getPlayerName(Player player) {
     return this.playerNamesMap.get(player);
   }

@@ -6,9 +6,11 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import java.io.IOException;
 
-public class AbstractUuidSerializer extends JsonSerializer<AbstractUuid> implements CustomJsonSerializerInterface {
+public class AbstractUuidSerializer extends JsonSerializer<AbstractUuid>
+    implements CustomJsonSerializerInterface {
   @Override
-  public void serialize(AbstractUuid value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
+  public void serialize(AbstractUuid value, JsonGenerator gen, SerializerProvider serializers)
+      throws IOException {
     gen.writeString(value.toString());
   }
 

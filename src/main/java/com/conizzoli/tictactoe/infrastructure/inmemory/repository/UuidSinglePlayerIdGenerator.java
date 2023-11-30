@@ -1,4 +1,4 @@
-package com.conizzoli.tictactoe.infrastructure.in_memory.repository;
+package com.conizzoli.tictactoe.infrastructure.inmemory.repository;
 
 import com.conizzoli.tictactoe.domain.model.SinglePlayerGameId;
 import com.conizzoli.tictactoe.domain.repository.SinglePlayerIdGeneratorInterface;
