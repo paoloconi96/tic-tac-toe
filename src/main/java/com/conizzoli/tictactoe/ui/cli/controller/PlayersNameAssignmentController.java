@@ -1,4 +1,4 @@
-package com.conizzoli.tictactoe.ui.controller;
+package com.conizzoli.tictactoe.ui.cli.controller;
 
 import com.conizzoli.tictactoe.domain.model.Player;
 import com.conizzoli.tictactoe.domain.service.PlayerService;

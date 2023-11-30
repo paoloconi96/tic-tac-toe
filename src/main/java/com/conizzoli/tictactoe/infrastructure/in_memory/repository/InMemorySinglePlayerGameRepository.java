@@ -4,10 +4,9 @@ import com.conizzoli.tictactoe.domain.exception.SinglePlayerGameCouldNotBeFound;
 import com.conizzoli.tictactoe.domain.model.SinglePlayerGame;
 import com.conizzoli.tictactoe.domain.model.SinglePlayerGameId;
 import com.conizzoli.tictactoe.domain.repository.SinglePlayerRepositoryInterface;
-import org.springframework.lang.NonNull;
-
 import java.util.HashMap;
 import java.util.Map;
+import org.springframework.lang.NonNull;
 
 public class InMemorySinglePlayerGameRepository implements SinglePlayerRepositoryInterface {
   private final Map<SinglePlayerGameId, SinglePlayerGame> games = new HashMap<>();

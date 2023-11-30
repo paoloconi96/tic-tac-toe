@@ -3,9 +3,8 @@ package com.conizzoli.tictactoe.application.service;
 import com.conizzoli.tictactoe.domain.model.SinglePlayerGame;
 import com.conizzoli.tictactoe.domain.model.SinglePlayerGameId;
 import com.conizzoli.tictactoe.domain.repository.SinglePlayerRepositoryInterface;
-import org.springframework.lang.NonNull;
-
 import java.util.Random;
+import org.springframework.lang.NonNull;
 
 public class CreateSinglePlayerGame {
   private final SinglePlayerRepositoryInterface singlePlayerRepository;

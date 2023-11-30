@@ -1,4 +1,4 @@
-package com.conizzoli.tictactoe.ui.controller;
+package com.conizzoli.tictactoe.ui.cli.controller;
 
 import com.conizzoli.tictactoe.application.service.CreateSinglePlayerGame;
 import com.conizzoli.tictactoe.application.service.GetSinglePlayerGame;
@@ -13,7 +13,7 @@ import com.conizzoli.tictactoe.domain.model.SinglePlayerGame;
 import com.conizzoli.tictactoe.domain.repository.SinglePlayerIdGeneratorInterface;
 import com.conizzoli.tictactoe.domain.service.PlayerService;
 import com.conizzoli.tictactoe.domain.service.PrinterService;
-import com.conizzoli.tictactoe.ui.exception.SinglePlayerGameCouldNotBeStarted;
+import com.conizzoli.tictactoe.ui.cli.exception.SinglePlayerGameCouldNotBeStarted;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.text.MessageFormat;

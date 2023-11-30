@@ -2,12 +2,11 @@ package com.conizzoli.tictactoe.domain.model;
 
 import com.conizzoli.tictactoe.domain.exception.BoardLocationAlreadyMarkedException;
 import com.conizzoli.tictactoe.domain.exception.GameBoardLocationCouldNotBeMarkedBecausePlayerIsNotNextMover;
-import org.springframework.lang.NonNull;
-
 import java.util.Comparator;
 import java.util.Objects;
 import java.util.Random;
 import java.util.stream.IntStream;
+import org.springframework.lang.NonNull;
 
 public class SinglePlayerGame extends AbstractGame {
   private final SinglePlayerGameId id;
@@ -60,7 +59,7 @@ public class SinglePlayerGame extends AbstractGame {
                 })
             .filter(Objects::nonNull)
             .sorted(Comparator.reverseOrder())
-            .skip(random.nextInt(100) <= 75 ? 0 : 1)
+            .skip(this.random.nextInt(100) <= 75 ? 0 : 1)
             .findFirst();
 
     move.ifPresent(value -> this.board.nonBlockingMark(Player.CIRCLE, value.toBoardLocation()));
@@ -103,7 +102,7 @@ public class SinglePlayerGame extends AbstractGame {
   }
 
   public SinglePlayerGameId getId() {
-    return id;
+    return this.id;
   }
 
   public Player getNextMovePlayer() {

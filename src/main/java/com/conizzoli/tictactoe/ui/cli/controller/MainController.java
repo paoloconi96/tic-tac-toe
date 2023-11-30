@@ -1,7 +1,7 @@
-package com.conizzoli.tictactoe.ui.controller;
+package com.conizzoli.tictactoe.ui.cli.controller;
 
 import com.conizzoli.tictactoe.domain.exception.GameBoardLocationCouldNotBeMarkedBecausePlayerIsNotNextMover;
-import com.conizzoli.tictactoe.ui.model.MenuAction;
+import com.conizzoli.tictactoe.ui.cli.model.MenuAction;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ResourceBundle;

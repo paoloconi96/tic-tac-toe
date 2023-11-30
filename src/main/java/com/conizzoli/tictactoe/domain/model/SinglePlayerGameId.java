@@ -1,7 +1,6 @@
 package com.conizzoli.tictactoe.domain.model;
 
 import com.conizzoli.shared.domain.AbstractUuid;
-
 import java.util.UUID;
 
 public class SinglePlayerGameId extends AbstractUuid {

@@ -1,4 +1,4 @@
-package com.conizzoli.tictactoe.ui.model;
+package com.conizzoli.tictactoe.ui.cli.model;
 
 public enum MenuAction {
   EXIT,

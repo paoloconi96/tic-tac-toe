@@ -2,7 +2,6 @@ package com.conizzoli.tictactoe.domain.model;
 
 import com.conizzoli.tictactoe.domain.exception.BoardLocationAlreadyMarkedException;
 import com.conizzoli.tictactoe.domain.exception.GameBoardLocationCouldNotBeMarkedBecausePlayerIsNotNextMover;
-
 import java.util.Optional;
 
 public interface GameInterface {

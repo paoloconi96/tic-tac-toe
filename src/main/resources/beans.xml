@@ -10,19 +10,21 @@
 
     <bean id="bufferedReader" factory-bean="customBeansFactory" factory-method="createBufferedReader"/>
     <bean id="resourceBundle" factory-bean="customBeansFactory" factory-method="createResourceBundle"/>
+    <bean factory-bean="customBeansFactory" factory-method="addCustomJsonSerializers"/>
 
     <context:component-scan base-package="com.conizzoli.tictactoe">
         <!-- Domain layer beans -->
-        <context:include-filter type="regex" expression=".*\.domain\.service\..*"/>
-        <context:include-filter type="regex" expression=".*\.domain\.repository\..*"/>
+        <context:include-filter type="regex" expression=".*\.domain\.service.*"/>
+        <context:include-filter type="regex" expression=".*\.domain\.repository.*"/>
 
         <!-- Application layer beans -->
-        <context:include-filter type="regex" expression=".*\.application\.service\..*"/>
+        <context:include-filter type="regex" expression=".*\.application\.service.*"/>
 
         <!-- Infrastructure layer beans -->
-        <context:include-filter type="regex" expression=".*\.infrastructure\..*repository\..*"/>
+        <context:include-filter type="regex" expression=".*\.infrastructure\..*repository.*"/>
 
         <!-- UI layer beans -->
-        <context:include-filter type="regex" expression=".*\.ui\.controller\..*"/>
+        <context:include-filter type="regex" expression=".*\.ui\.cli\.controller.*"/>
+        <context:include-filter type="regex" expression=".*\.ui\.web.*"/>
     </context:component-scan>
 </beans>
